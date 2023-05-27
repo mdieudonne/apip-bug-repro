@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "07b8b6aa-d62a-4112-858a-a7bfbff483ad",
+		"name": "apip-bug-repro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4564478"
+	},
+	"item": [
+		{
+			"name": "GET all users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://symfony.localhost/api/users",
+					"protocol": "http",
+					"host": [
+						"symfony",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all businesses",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://symfony.localhost/api/qual/qopse/businesses",
+					"protocol": "http",
+					"host": [
+						"symfony",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"qual",
+						"qopse",
+						"businesses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT business",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/merge-patch+json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"@context\": \"/api/contexts/qual_qopse_business\",\n    \"@id\": \"/api/qual/qopse/businesses/1\",\n    \"@type\": \"qual_qopse_business\",\n    \"name\": \"business1\",\n    \"attachedUser\": [\n        {\n            \"@id\": \"/api/users/1\",\n            \"@type\": \"User\",\n            \"id\": 1\n        }\n    ],\n    \"businessManager\":\n    {\n        \"@id\": \"/api/users/1\",\n        \"@type\": \"User\",\n        \"id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://symfony.localhost/api/qual/qopse/businesses/1",
+					"protocol": "http",
+					"host": [
+						"symfony",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"qual",
+						"qopse",
+						"businesses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST business",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"business1\",\n    \"attachedUser\": [\n        {\n            \"@id\": \"/api/users/1\",\n            \"@type\": \"User\",\n            \"id\": 1\n        }\n    ],\n    \"businessManager\": {\n        \"@id\": \"/api/users/1\",\n        \"@type\": \"User\",\n        \"id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://symfony.localhost/api/qual/qopse/businesses",
+					"protocol": "http",
+					"host": [
+						"symfony",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"qual",
+						"qopse",
+						"businesses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user1\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://symfony.localhost/api/users",
+					"protocol": "http",
+					"host": [
+						"symfony",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
