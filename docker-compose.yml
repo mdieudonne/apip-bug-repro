@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/symfony:cached
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - 80:80
+    depends_on:
+      - php
+    networks:
+      - symfony
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/symfony:cached
+    expose:
+      - 9000
+    depends_on:
+      - postgres
+    networks:
+      - symfony
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=symfony.localhost"
+  postgres:
+    image: postgres
+    ports:
+      - 15432:5432
+    environment:
+      POSTGRES_USER: symfony
+      POSTGRES_PASSWORD: symfony
+      POSTGRES_DB: symfony
+    volumes:
+      - pgvol:/var/lib/postgresql/data
+    networks:
+      - symfony
+  pgAdmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - 8000:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    volumes:
+      - pgavol:/var/lib/pgadmin
+    networks:
+      - symfony
+
+networks:
+  symfony:
+volumes:
+  pgvol:
+  pgavol:
+

@@ -1,0 +1,21 @@
+api_platform:
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]
+        api_keys:
+          apiKey:
+            name: Authorization
+            type: header
+    defaults:
+      pagination_client_enabled: true
+      pagination_client_items_per_page: true
+      normalization_context:
+        skip_null_values: false
+    collection:
+      pagination:
+        enabled_parameter_name: pagination # optional
+        items_per_page_parameter_name: itemsPerPage # GET /books?itemsPerPage=20
+
