@@ -22,6 +22,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
         new Get(),
         new Patch(),
         new Put(),
+        new Patch(),
         new Delete(),
         new GetCollection(),
         new Post(),
@@ -52,12 +53,8 @@ class User implements UserInterface
     #[Groups(['user:output','user:input','business:output', 'business:input'])]
     private $username;
     #[ORM\OneToMany(targetEntity: \App\Entity\Qual\Qopse\Business::class, mappedBy: 'businessManager')]
-    #[Groups(['user:output','user:input','business:output', 'business:input'])]
-    #[MaxDepth(2)]
     private $qualQopseBusinessManagers;
     #[ORM\ManyToMany(targetEntity: \App\Entity\Qual\Qopse\Business::class, mappedBy: 'attachedUsers')]
-    #[Groups(['user:output','user:input','business:output', 'business:input'])]
-    #[MaxDepth(2)]
     private $qualQopseBusinesses;
 
     public function __construct()

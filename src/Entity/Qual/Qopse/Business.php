@@ -46,18 +46,18 @@ class Business
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     #[ORM\Column(type: 'integer')]
-    #[Groups(['business:output','user:output'])]
+    #[Groups(['business:output','user:output','user:input'])]
     private $id;
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Groups(['business:output','business:input','user:output'])]
+    #[Groups(['business:output','business:input','user:output','user:input'])]
     private $name;
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'qualQopseBusinessManagers')]
-    #[Groups(['business:output', 'business:input','user:output'])]
+    #[Groups(['business:output', 'business:input','user:output','user:input'])]
     #[MaxDepth(2)]
     private $businessManager;
     #[ORM\JoinTable(name: 'qopse_user_business', schema: 'qual')]
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'qualQopseBusinesses')]
-    #[Groups(['business:output', 'business:input','user:output'])]
+    #[Groups(['business:output', 'business:input','user:output','user:input'])]
     #[MaxDepth(2)]
     private $attachedUsers;
 
